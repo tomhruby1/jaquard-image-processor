@@ -21,14 +21,14 @@ color_order = ((  1, 194,  83),
                (255, 142, 246))
 
 
-def img2jacquard(front_img:np.ndarray, back_img:np.ndarray, color_map:tuple)->np.ndarray:
+def img2jacquard(front_img:np.ndarray, back_img:np.ndarray, color_order:tuple)->np.ndarray:
     '''
     Make n x m x 3 image patern into n*3 x m (x 3) jacquard pattern
     args:
         - front_image: lic
         - back_image: rub of the same shape as front_image
     '''
-    assert len(color_map) == 3
+    assert len(color_order) == 3
     assert front_img.shape == back_img.shape
 
     res = np.zeros((front_img.shape[0]*3, front_img.shape[1], 3))
@@ -44,7 +44,7 @@ def img2jacquard(front_img:np.ndarray, back_img:np.ndarray, color_map:tuple)->np
                     res[i+color_order.index(tuple(front_img[i//3, j, :])), j, :] = red
                     res[i+color_order.index(tuple(back_img[i//3, j, :])), j, :] = green
 
-    res = cv2.cvtColor(res.astype(np.uint8), cv2.COLOR_RGB2BGR)
+    res = res.astype(np.uint8)
 
     return res
 
