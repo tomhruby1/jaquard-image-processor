@@ -7,10 +7,10 @@ from pathlib import Path
 # cervena = lic
 # zelena = rub
 # zluta = oboji
-blue   = (0,0,255)
-red    = (255,0,0) 
-green  = (0,255,0)
-yellow = (255,255,0)
+BLUE   = (0,0,255)
+RED    = (255,0,0) 
+GREEN  = (0,255,0)
+YELLOW = (255,255,0)
 
 
 
@@ -37,12 +37,12 @@ def img2jacquard(front_img:np.ndarray, back_img:np.ndarray, color_order:tuple)->
         if i % 3 == 0:
             for j in range(res.shape[1]):
                 # filling in row i -> row i+3
-                res[i:i+3,j,:] = blue # default blue
+                res[i:i+3,j,:] = BLUE # default blue
                 if np.all(front_img[i//3, j, :] == back_img[i//3, j, :]):
-                    res[i+color_order.index(tuple(front_img[i//3, j, :])), j, :] = yellow
+                    res[i+color_order.index(tuple(front_img[i//3, j, :])), j, :] = YELLOW
                 else:
-                    res[i+color_order.index(tuple(front_img[i//3, j, :])), j, :] = red
-                    res[i+color_order.index(tuple(back_img[i//3, j, :])), j, :] = green
+                    res[i+color_order.index(tuple(front_img[i//3, j, :])), j, :] = RED
+                    res[i+color_order.index(tuple(back_img[i//3, j, :])), j, :] = GREEN
 
     res = res.astype(np.uint8)
 

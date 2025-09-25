@@ -718,7 +718,7 @@ def main():
     
     # Set application properties
     app.setApplicationName("Jacquard Image Processor")
-    app.setApplicationVersion("1.0")
+    app.setApplicationVersion("0.1")
     
     # Create and show main window
     window = ImageProcessorGUI()
